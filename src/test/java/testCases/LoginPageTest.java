@@ -1,7 +1,6 @@
 package testCases;
 
-import java.sql.Driver;
-
+import org.slf4j.helpers.Reporter;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -18,12 +17,22 @@ public class LoginPageTest extends LoginPage
 		initialization();
 		login=new LoginPage();
 	}
+	
+	@Test
+	public void loginToApplicationTest()
+	{
+		String expResult = "https://www.saucedemo.com/inventory.html";
+		String actResult = login.loginToApplication();
+		Assert.assertEquals(expResult,actResult); 
+	}
+	
 	@Test
 	public void verifyURLOfApplicationTest()
 	{
 		String expURL="https://www.saucedemo.com/";
 		String actURL=login.verifyURLOfApplication();
 		Assert.assertEquals(expURL,actURL);
+		org.testng.Reporter.log("Swag Lab URL = "+ actURL);
 	}
 	@Test
 	public void verifyTitleOfApplicationTest()
